@@ -15,6 +15,9 @@ $current_doc_name = preg_replace('/\.[^.]+$/','',$current_page);
 function loadCSSFile($fileName){
   if (file_exists("css/" . $fileName . '.css')){
     echo '<link href="css/' . $fileName . '.css" rel="stylesheet">';
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -22,17 +25,28 @@ function loadCSSFile($fileName){
 function loadCSSCDN($href, $sri=null){
   if($sri != null){
       echo '<link rel="stylesheet" href="' . $href . '" integrity="' . $sri . '" crossorigin="anonymous">';
+      return true;
   } else {
       echo '<link rel="stylesheet" href="' . $href . '" crossorigin="anonymous">';
+      return true;
   }
-
+  return false;
 }
+
+/* this function combines the previous two functions in order to automatically check for the presence of a CSS file in a local directory, while using CDN source as a fallback in case the file is not present, this helps insure efficiency and reliable access to third party resources*/
+function loadCSS($fileName, $href, $sri=null){
+  if(loadCSSFile($fileName)){ return true; } else if(loadCSSCDN){ return true; } else { return false;}
+  
+}
+
 
 /* this function is used to load a Javascript file from a local external JS script, the function checks for the existence of the file in the js/* directory and loads it if it exists*/
 function loadJSFile($fileName){
   if (file_exists("js/" . $fileName . '.js')){
     echo '<script src="js/' . $fileName . '.js"></script>';
-
+    return true;
+  } else {
+    return false;
   }
 }
 
@@ -40,10 +54,18 @@ function loadJSFile($fileName){
 function loadJSCDN($href, $sri=null){
   if($sri != null){
       echo '<script src="' . $href . '" integrity="' . $sri . '" crossorigin="anonymous"></script>';
+      return true;
   } else {
       echo '<script src="' . $href . '" crossorigin="anonymous"></script>';
+      return true;
   }
+  return false;
 
+}
+
+/* this function combines the previous two functions in order to automatically check for the presence of a JS file in a local directory, while using CDN source as a fallback in case the file is not present, this helps insure efficiency and reliable access to third party resources*/
+function loadJS($fileName, $href, $sri=null){
+  if(loadJSFile($fileName)){ return true; } else if(loadJSCDN){ return true; } else { return false;}
 }
 
 /*checks for an element in the page with a class name of the given parameter*/
@@ -65,6 +87,6 @@ function checkForClassElement($class){
 
 /*checks for an element in the page with an ID name of the given parameter*/
 function checkForIDElement($ID){
-
+  // TODO: Write this function
 }
 ?>
