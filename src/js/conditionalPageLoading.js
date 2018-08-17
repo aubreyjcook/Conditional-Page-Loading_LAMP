@@ -1,9 +1,11 @@
 /* variable declarations
  ------------------------------------------------------------- */
+let current_doc_name = window.location.pathname.split("/").pop();
+
 
 /* function/method declarations
  ------------------------------------------------------------- */
-function loadCSSFile(fileName) {
+/* function loadCSSFile(fileName) {
     //get the site domain and current path url
     var siteURL = document.location.origin + document.location.pathname;
     siteURL = siteURL.substring(0, siteURL.lastIndexOf("/"));
@@ -31,4 +33,4 @@ function loadPageCSS() {
     if (currentDocument.toString() !== '') {
         loadCSSFile(currentDocument);
     }
-}
+} */
