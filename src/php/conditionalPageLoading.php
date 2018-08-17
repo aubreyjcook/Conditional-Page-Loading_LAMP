@@ -39,11 +39,6 @@ function loadCSS($fileName, $href, $sri=null){
   
 }
 
-/* this function loads a CSS file that is named after the currently loaded page, eg: 'about.php' will automatically load a 'about.css' file using this function */
-function loadPageCSS() {
-  loadCSSFile($current_doc_name);
-}
-
 
 /* this function is used to load a Javascript file from a local external JS script, the function checks for the existence of the file in the js/* directory and loads it if it exists*/
 function loadJSFile($fileName){
