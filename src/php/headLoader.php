@@ -2,7 +2,8 @@
         * This file should primarily be used to load CSS files, it uses a function that will automatically load the CSS file named after the current document, eg 'index.html', or 'about.php' will have 'index.css', or 'about.css' loaded, respectively, and IF they exist in your /css directory.
         *  
         */
-loadCSSFile('main');
-loadCSSFile($current_doc_name);
+        
+        loadCSSFile('main');
+        loadCSSFile($current_doc_name);
 
 ?>
